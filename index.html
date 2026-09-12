@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathQuest SMK — Game Matematika Kelas 10–12</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <span class="badge">SMK • KELAS 10–12</span>
+        <h1>MathQuest</h1>
+        <p>Petualangan matematika 2D untuk belajar sambil bermain.</p>
+      </div>
+      <div class="scorebox">
+        <div><span>Skor</span><strong id="score">0</strong></div>
+        <div><span>Streak</span><strong id="streak">0🔥</strong></div>
+      </div>
+    </header>
+
+    <main>
+      <section id="menuScreen" class="screen active">
+        <div class="hero-card">
+          <div class="hero-art">
+            <div class="planet p1"></div>
+            <div class="planet p2"></div>
+            <div class="player">🧑‍🚀</div>
+            <div class="coin c1">✦</div><div class="coin c2">✦</div><div class="coin c3">✦</div>
+          </div>
+          <div class="hero-copy">
+            <h2>Siap menaklukkan dunia angka?</h2>
+            <p>Pilih kelas dan misi. Jawab soal untuk mengumpulkan XP, menjaga streak, dan membuka level berikutnya.</p>
+            <div class="select-row">
+              <label>
+                Kelas
+                <select id="gradeSelect">
+                  <option value="10">Kelas 10</option>
+                  <option value="11">Kelas 11</option>
+                  <option value="12">Kelas 12</option>
+                </select>
+              </label>
+              <label>
+                Mode
+                <select id="modeSelect">
+                  <option value="campuran">Misi Campuran</option>
+                  <option value="cepat">Speed Run</option>
+                  <option value="latihan">Latihan Santai</option>
+                </select>
+              </label>
+            </div>
+            <button class="primary" id="startBtn">🚀 Mulai Petualangan</button>
+          </div>
+        </div>
+
+        <div class="topic-grid">
+          <article><span>📐</span><h3>Aljabar & Fungsi</h3><p>Persamaan, fungsi, eksponen, logaritma.</p></article>
+          <article><span>📊</span><h3>Statistika</h3><p>Mean, median, peluang, data.</p></article>
+          <article><span>📈</span><h3>Kalkulus</h3><p>Limit, turunan, integral dasar.</p></article>
+          <article><span>📐</span><h3>Geometri</h3><p>Trigonometri dan bangun ruang.</p></article>
+        </div>
+      </section>
+
+      <section id="gameScreen" class="screen">
+        <div class="hud">
+          <div class="progress-wrap">
+            <div class="small-label">Misi <span id="questionNo">1</span>/<span id="totalQuestions">10</span></div>
+            <div class="progress"><div id="progressBar"></div></div>
+          </div>
+          <div class="timer-wrap">⏱ <strong id="timer">30</strong>s</div>
+        </div>
+
+        <div class="game-layout">
+          <aside class="map-card">
+            <div class="map-title">PETA MISI</div>
+            <div class="map">
+              <div class="path"></div>
+              <div class="node n1 active">1</div>
+              <div class="node n2">2</div>
+              <div class="node n3">3</div>
+              <div class="node n4">4</div>
+              <div class="node n5">5</div>
+              <div class="map-player" id="mapPlayer">🧑‍🚀</div>
+            </div>
+            <div class="topic-pill" id="topicPill">Aljabar</div>
+          </aside>
+
+          <section class="question-card">
+            <div class="question-meta">
+              <span id="difficulty">Mudah</span>
+              <span id="xp">+100 XP</span>
+            </div>
+            <h2 id="questionText">Soal akan muncul di sini</h2>
+            <div id="choices" class="choices"></div>
+            <div id="feedback" class="feedback"></div>
+            <button id="nextBtn" class="primary hidden">Lanjut ➜</button>
+          </section>
+        </div>
+      </section>
+
+      <section id="resultScreen" class="screen">
+        <div class="result-card">
+          <div class="trophy">🏆</div>
+          <h2>Misi Selesai!</h2>
+          <p id="resultMessage">Kerja bagus.</p>
+          <div class="result-stats">
+            <div><span>Skor</span><strong id="finalScore">0</strong></div>
+            <div><span>Benar</span><strong id="finalCorrect">0</strong></div>
+            <div><span>Akurasi</span><strong id="finalAccuracy">0%</strong></div>
+            <div><span>XP</span><strong id="finalXP">0</strong></div>
+          </div>
+          <div class="result-actions">
+            <button id="retryBtn" class="primary">🔁 Main Lagi</button>
+            <button id="menuBtn" class="secondary">🏠 Menu</button>
+          </div>
+          <p id="saveStatus" class="save-status">Hasil akan dikirim ke Google Sheet jika koneksi Apps Script sudah dipasang.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>MathQuest SMK</span>
+      <span>Belajar • Bermain • Bertumbuh</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
