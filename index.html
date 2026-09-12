@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathoria — Story RPG Card Battle</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div><span class="eyebrow">MATHORIA ACADEMY • EDU RPG</span><h1>Mathoria</h1><p>Story RPG · Card Battle · Matematika SMK</p></div>
+  <div class="topstats"><span>💰 <b id="coins">100</b></span><span>⭐ Lv <b id="level">1</b></span><span>👤 <b id="playerName">Pemain</b></span></div>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="hero-art"><div class="stars">✦ · ✧ · ✦　✧ · ✦ · ✧</div><div class="castle">🏰</div><div class="hero-char">🧙</div><div class="magic magic-a">π</div><div class="magic magic-b">∞</div></div>
+    <div class="hero-copy"><span class="chapter">CHAPTER 01</span><h2>Gerbang Akademi Mathoria</h2><p>Di dunia ini, matematika adalah sumber energi. Bantu Kai melewati tujuh wilayah, kumpulkan kartu, dan kuasai konsep matematika lewat duel.</p><button class="primary big" data-go="story">▶ Mulai / Lanjutkan</button>
+      <div class="home-stats"><div><b id="homeCards">0</b><small>Kartu Aktif</small></div><div><b id="homeWins">0</b><small>Battle Menang</small></div><div><b id="homeAccuracy">0%</b><small>Akurasi</small></div></div>
+    </div>
+  </div>
+  <div class="feature-grid">
+    <button class="feature" data-go="collection">🃏 <b>Koleksi Kartu</b><small>Filter berdasarkan cost & rarity</small></button>
+    <button class="feature" data-go="deck">⚔️ <b>Deck Builder</b><small>Susun strategi 5 kartu</small></button>
+    <button class="feature" data-go="story">📖 <b>Story & Quest</b><small>Lanjutkan petualangan</small></button>
+    <button class="feature" data-go="profile">📊 <b>Profil</b><small>Progress & mastery</small></button>
+  </div>
+</section>
+
+<section id="story" class="screen">
+  <div class="story">
+    <div class="story-art"><div class="moon">◐</div><div class="tower">🏰</div><div class="mentor">🧙‍♂️</div></div>
+    <div class="dialog"><span class="chapter">CHAPTER 01 • QUEST 01</span><h2 id="storyTitle">Gerbang yang Terkunci</h2><p id="storyText">“Gerbang Akademi hanya terbuka bagi petualang yang mampu membuktikan logikanya. Menangkan duel pertama dan bawa pulang Sigil Aljabar.”</p>
+      <div class="quest"><b>QUEST UTAMA</b><span>Menangkan 1 duel melawan Algebra Gatekeeper.</span></div><button class="primary" data-go="battle">⚔️ Masuk Arena</button> <button class="secondary" data-go="home">← Kembali</button>
+    </div>
+  </div>
+</section>
+
+<section id="collection" class="screen">
+ <div class="section-head"><div><span class="chapter">CARD ARCHIVE</span><h2>Koleksi Kartu</h2></div><button class="secondary" data-go="home">← Menu</button></div>
+ <p class="muted">Koleksi dibagi berdasarkan <b>Energy Cost</b>. Gunakan kartu murah untuk tempo, kartu mahal untuk finisher.</p>
+ <div class="filterbar">
+  <div class="seg"><button class="filter active" data-cost="all">Semua</button><button class="filter" data-cost="1">⚡1</button><button class="filter" data-cost="2">⚡2</button><button class="filter" data-cost="3">⚡3</button><button class="filter" data-cost="4">⚡4</button><button class="filter" data-cost="5">⚡5</button></div>
+  <select id="rarityFilter"><option value="all">Semua Rarity</option><option>COMMON</option><option>RARE</option><option>EPIC</option><option>LEGENDARY</option></select>
+ </div>
+ <div id="collectionGrid" class="card-grid"></div>
+</section>
+
+<section id="deck" class="screen">
+ <div class="section-head"><div><span class="chapter">DECK BUILDER</span><h2>Deck Saya <small id="deckCount"></small></h2></div><button class="secondary" data-go="home">← Menu</button></div>
+ <div class="deck-summary"><div>⚡ Curve <b id="avgCost">0.0</b></div><div>⚔️ Power <b id="deckPower">0</b></div><div>❤️ Durability <b id="deckHp">0</b></div><div>🎴 Slot <b id="deckSlots">0/5</b></div></div>
+ <p class="muted">Klik kartu untuk menambah/menghapus. Maksimal 5 kartu. Deck disimpan otomatis di browser.</p>
+ <div id="deckGrid" class="card-grid"></div>
+</section>
+
+<section id="battle" class="screen">
+ <div class="battle-head"><div><span class="chapter">CARD DUEL • CHAPTER 01</span><h2>Algebra Gatekeeper</h2></div><div class="resources">⚡ <b id="energy">1</b>/7</div></div>
+ <div class="arena">
+   <div class="bossbar"><span>👹 Gatekeeper</span><div><i id="bossHpBar"></i></div><b id="bossHp">900</b></div>
+   <div id="lanes" class="lanes"></div>
+   <div class="battle-log" id="battleLog">Pilih kartu di hand. Jawaban matematika yang benar mengaktifkan serangan.</div>
+ </div>
+ <div class="hand-head"><span>HAND</span><small>Cost kartu ≤ Energy</small></div><div id="hand" class="hand"></div>
+ <div class="battle-actions"><button class="secondary" id="endTurn">⏭️ Akhiri Giliran</button><button class="secondary" data-go="deck">🃏 Ubah Deck</button><button class="secondary" data-go="home">🏠 Menu</button></div>
+</section>
+
+<section id="profile" class="screen">
+ <div class="section-head"><div><span class="chapter">ADVENTURER PROFILE</span><h2>Profil Belajar</h2></div><button class="secondary" data-go="home">← Menu</button></div>
+ <div class="profile"><div class="avatar">🧙</div><div><h2 id="profileName">Pemain</h2><p class="muted">Mathoria Adventurer</p><div class="xpbar"><i id="xpBar"></i></div><small id="xpText"></small></div></div>
+ <div class="profile-stats"><div><b id="pLevel">1</b><span>Level</span></div><div><b id="pWins">0</b><span>Wins</span></div><div><b id="pCorrect">0</b><span>Benar</span></div><div><b id="pAccuracy">0%</b><span>Akurasi</span></div></div>
+ <h3>Mastery Materi</h3><div id="mastery"></div>
+</section>
+</main>
+<footer><span>Mathoria v3.0</span><span>HTML · CSS · JavaScript · Google Sheets Ready</span></footer>
+</div>
+<script src="script.js"></script>
+</body></html>
